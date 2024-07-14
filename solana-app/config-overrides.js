@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = function override(config, env) {
+  // Merge the additional fallbacks into the existing configuration
   config.resolve.fallback = {
     assert: require.resolve('assert/'),
     buffer: require.resolve('buffer/'),
@@ -11,7 +12,8 @@ module.exports = function override(config, env) {
     stream: require.resolve('stream-browserify'),
     url: require.resolve('url/'),
   };
-  
+
+  // Add the necessary plugins
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
       process: 'process/browser',
